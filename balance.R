@@ -25,7 +25,14 @@ balanced<-function(data, ID, TIME, VARS, required=c("all","shared")) {
     data[idx, ]
 }
 
-balanced(unbal, "PERSON","YEAR")
+library(data.table)
+Balance_Panel = function(Data, Indiv_ColName, Time_ColName){
+    Individuals = unique(Data[, get(Indiv_ColName)])
+    Times = unique(Data[, get(Time_ColName)])
 
-missing.at.least.one <- unique(unbal$PERSON[!complete.cases(unbal)])
-unbal[!(unbal$PERSON %in% missing.at.least.one),]
+    Full_Panel = data.table(expand.grid(Individuals, Times))
+    setnames(Full_Panel, c(Indiv_ColName, Time_ColName))
+    setkeyv(Full_Panel, c(Indiv_ColName, Time_ColName))
+    setkeyv(Data, c(Indiv_ColName, Time_ColName))
+    return(Data[Full_Panel])
+}
