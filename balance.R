@@ -25,6 +25,8 @@ balanced<-function(data, ID, TIME, VARS, required=c("all","shared")) {
     data[idx, ]
 }
 
+balanced(unbal, "PERSON","YEAR")
+
 library(data.table)
 Balance_Panel = function(Data, Indiv_ColName, Time_ColName){
     Individuals = unique(Data[, get(Indiv_ColName)])
