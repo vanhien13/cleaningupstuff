@@ -49,3 +49,47 @@ if __name__ == '__main__':
     else:
         # length is odd
         return f(l[1:]) + l[:1]
+        
+        
+    list_A = []
+
+def OddEvenRecursion(number):
+    """ Returns a set and a sum of numbers in the set using recursion """
+    
+    try:
+        #Append the list with odd or even numbers
+        list_A.append(number)
+    
+        if number == 0 or number == 1 or number == -1:
+            # Display the even numbers' set and the sum of these numbers
+            print "\n<The numbers' set : %s \n\n<And the sum is :" % \
+              list_A
+            return number
+        elif number < 1:
+            return number + OddEvenRecursion(number + 2)
+        else:
+            return number + OddEvenRecursion(number - 2)
+
+    except TypeError:
+        print 'Please enter an integer.'
+    
+if __name__ == "__main__":
+    
+    # testing an odd value.
+    odd = OddEvenRecursion(7) 
+    print odd
+    # Empty the list
+    del list_A[:]
+    # testing a negative odd  value.
+    negativeOdd = OddEvenRecursion(-7) 
+    print negativeOdd
+    # Empty the list
+    del list_A[:]    
+    # testing an even value.
+    even = OddEvenRecursion(8) # testing an even value.
+    print even
+    # Empty the list
+    del list_A[:]
+    # testing a negative even value.
+    negativeEven = OddEvenRecursion(-8) # testing an even value.
+    print negativeEven    
