@@ -49,32 +49,4 @@ if __name__ == '__main__':
     else:
         # length is odd
         return f(l[1:]) + l[:1]
-        
-        
-    list_A = []
 
-def slove(array, deep=0):
-    '''para:
-        array: list input.
-    return: list.
-    !!!Do not set value for deep!!!'''
-    if len(array) > 2:
-        if deep > 0:
-            for i in xrange(0, len(array), 2):
-                array[i], array[i + 1] = array[i + 1], array[i]
-        left = array[0]
-        right = array[-1]
-        array = array[1:-1]
-        array = slove(array, deep + 1)
-        array.insert(0, left)
-        array.append(right)
-        return array
-    else:
-        array[0], array[-1] = array[-1], array[0]
-        return array
-
-
-if __name__ == '__main__':
-    array = map(int, raw_input('Enter array with sep is space key: ').split(' '))
-    # array = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
-    print slove(array)
