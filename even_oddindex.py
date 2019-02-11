@@ -50,3 +50,14 @@ if __name__ == '__main__':
         # length is odd
         return f(l[1:]) + l[:1]
 
+    def split_list(l):
+    def sub(index, l, odd, even):
+        try:
+            if index % 2 == 0:
+                even.append(l[index])
+            else:
+                odd.append(l[index])
+        except IndexError: # we've reached the end of the list
+            return odd, even
+        return sub(index+1, l, odd, even) # recursive call by advancing the index
+    return sub(0, l, [], []) # initial call to function
